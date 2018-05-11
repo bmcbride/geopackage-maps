@@ -1,0 +1,16 @@
+{
+  "name": "Champlain Charts",
+  "short_name": "Champlain Charts",
+  "icons": [
+    {
+      "src": "assets/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "theme_color": "#2196f3",
+  "background_color":  "#2196f3",
+  "display": "standalone",
+  "scope": "./"
+}

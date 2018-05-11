@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <title>NOAA Charts</title>
+  <link rel="stylesheet" href="assets/leaflet-1.3.1/leaflet.css"/>
+  <style>
+    .map {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+    }
+  </style>
+  <script src="assets/leaflet-1.3.1/leaflet.js"></script>
+  <script src="assets/leaflet-geopackage-2.0.4/leaflet-geopackage.min.js"></script>
+</head>
+
+<body>
+  <div id="map" class="map"></div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+    var map = L.map('map', {
+      zoomDelta: 0.25,
+      zoomSnap: 0
+    }).setView([44.573046, -73.330287], 10);
+
+    var baseLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png", {
+      attribution: "© <a href='http://openstreetmap.org'>OpenStreetMap</a> contributors, © <a href='https://carto.com/attribution'>CARTO</a>"
+    });
+    baseLayer.addTo(map);
+
+    var chart_14781_1 = L.geoPackageTileLayer({
+      geoPackageUrl: '14781_1.gpkg',
+      layerName: '14781_1'
+    });
+
+    var chart_14782_1 = L.geoPackageTileLayer({
+      geoPackageUrl: '14782_1.gpkg',
+      layerName: '14782_1'
+    });
+
+    var baseLayers = {
+      "OSM": baseLayer/*,
+      "NOAA Charts": charts*/
+    };
+
+    var overlays = {
+      "Richelieu River": chart_14781_1,
+      "Cumberland Head": chart_14782_1
+    };
+
+    L.control.layers(baseLayers, overlays).addTo(map);
+  </script>
+</body>
+</html>
