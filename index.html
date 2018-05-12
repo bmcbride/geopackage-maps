@@ -34,14 +34,9 @@
     });
     baseLayer.addTo(map);
 
-    var chart_14781_1 = L.geoPackageTileLayer({
-      geoPackageUrl: '14781_1.gpkg',
-      layerName: '14781_1'
-    });
-
-    var chart_14782_1 = L.geoPackageTileLayer({
-      geoPackageUrl: '14782_1.gpkg',
-      layerName: '14782_1'
+    var charts = L.geoPackageTileLayer({
+      geoPackageUrl: 'merge.gpkg',
+      layerName: 'merge'
     });
 
     var baseLayers = {
@@ -50,8 +45,7 @@
     };
 
     var overlays = {
-      "Richelieu River": chart_14781_1,
-      "Cumberland Head": chart_14782_1
+      "Champlain Charts": charts
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
